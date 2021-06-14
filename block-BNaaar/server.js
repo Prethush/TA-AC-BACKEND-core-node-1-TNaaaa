@@ -8,13 +8,17 @@ function handleRequest(req, res) {
     let pathName = parsedUrl.pathname;
     console.log(pathName);
     if(req.method === 'GET' && req.url === '/') {
+        res.setHeader('Content-Type', 'text-plain');
         res.end(`Welcome to homepage`);
     } else if(req.method === 'GET' && pathName === '/about') {
         res.setHeader('Content-Type', 'text-html');
         res.end('<h2>this is all about NodeJS</h2>');
     } else if(req.method === 'POST' && pathName === '/about') {
-        res.setHeader('Content-Type', 'text/json');
-        res.end("{message: 'this is a post request'}");
+        res.setHeader('Content-Type', 'application.json');
+        res.end('{message: this is a post request}');
+    } else {
+        res.writeHead(404, {'Content-Type': 'text-html'});
+        res.end('<h1>Page not fount</h1>');
     }
 }
 server.listen(5000, () => {
