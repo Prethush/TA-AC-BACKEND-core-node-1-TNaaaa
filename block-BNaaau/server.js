@@ -114,6 +114,7 @@ let server = http.createServer(handleRequest);
 //         res.setHeader('Content-Type', 'text/html');
 //         res.end('<h2>Prethush</h2>');
 //     }else if(req.method === 'GET' && req.url === '/users') {
+                // res.setHeader('Content-Type', 'text/html');
 //         fs.readFile('./index.html', (error, content) => {
 //             if(error) {
 //                 console.log(error);
@@ -135,22 +136,21 @@ let server = http.createServer(handleRequest);
 //     console.log(`server listening on port 2345`);
 //   });
 
-// function handleRequest(req, res) {
+function handleRequest(req, res) {
 
-//     let parsedUrl = url.parse(req.url);
-//     console.log(parsedUrl);
-//     console.log(parsedUrl.pathname);
-//     console.log(req.url);
-//     let findIndex = parsedUrl.query.indexOf('=');
-//     let email = parsedUrl.query.slice(findIndex + 1);
-//     res.setHeader('Content-Type', 'json/ application');
-//     res.end(email);
+    let parsedUrl = url.parse(req.url, true);
+    console.log(parsedUrl);
+    console.log(parsedUrl.pathname);
+    console.log(req.url);
+    
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(parsedUrl.query));
 
-// }
+}
 
-//   server.listen(10000, () => {
-//     console.log(`server listening on port 10000`);
-//   });
+  server.listen(10000, () => {
+    console.log(`server listening on port 10000`);
+  });
 
 
 
