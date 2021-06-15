@@ -16,7 +16,7 @@ function handleRequest(req, res) {
         res.setHeader('Content-Type', 'text/css');
         fs.createReadStream(`assets/stylesheet${req.url}`).pipe(res);
     } else if(req.url.split(".").pop() === 'jpg' || req.url.split(".").pop() === 'png') {
-        res.setHeader('Content-Type', 'text/img');
+        res.setHeader('Content-Type', 'image/jpg');
         fs.createReadStream(`assets/images${req.url}`).pipe(res);
     } else if(req.url.split('.').pop() === 'js') {
         res.setHeader('Content-Type', 'text/js');
